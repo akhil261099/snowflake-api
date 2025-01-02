@@ -44,7 +44,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("Enter your SELECT query:");
             let select_query = read_user_input()?;
             let start = Instant::now();
-            if let Err(e) = run_select_query(&select_query).await {
+            if let Err(e) = run_query(&select_query).await {
                 eprintln!("Error executing SELECT query: {}", e);
             }
             let duration = start.elapsed();
@@ -54,7 +54,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             // INSERT query
             println!("Enter your INSERT query:");
             let insert_query = read_user_input()?;
-            if let Err(e) = run_insert_query(&insert_query).await {
+            if let Err(e) = run_query(&insert_query).await {
                 eprintln!("Error executing INSERT query: {}", e);
             }
         }
@@ -62,7 +62,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             // UPDATE query
             println!("Enter your UPDATE query:");
             let update_query = read_user_input()?;
-            if let Err(e) = run_update_query(&update_query).await {
+            if let Err(e) = run_query(&update_query).await {
                 eprintln!("Error executing UPDATE query: {}", e);
             }
         }
@@ -70,7 +70,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             // DELETE query
             println!("Enter your DELETE query:");
             let delete_query = read_user_input()?;
-            if let Err(e) = run_delete_query(&delete_query).await {
+            if let Err(e) = run_query(&delete_query).await {
                 eprintln!("Error executing DELETE query: {}", e);
             }
         }
@@ -103,43 +103,3 @@ async fn run_query(sql: &str) -> Result<QueryResult> {
     let res = api.exec(sql).await?;
     Ok(res)
 }
-
-// Function to run a SELECT query
-async fn run_select_query(sql: &str) -> Result<QueryResult> {
-    println!("Executing SELECT query: {}", sql);
-    run_query(sql).await
-}
-
-// Function to run an INSERT query
-async fn run_insert_query(sql: &str) -> Result<QueryResult> {
-    println!("Executing INSERT query: {}", sql);
-    run_query(sql).await
-}
-
-// Function to run an UPDATE query
-async fn run_update_query(sql: &str) -> Result<QueryResult> {
-    println!("Executing UPDATE query: {}", sql);
-    run_query(sql).await
-}
-
-// Function to run a DELETE query
-async fn run_delete_query(sql: &str) -> Result<QueryResult> {
-    println!("Executing DELETE query: {}", sql);
-    run_query(sql).await
-}
-
-
-
-
-
-
-
-
-
-
-// // Function to run a PUT query
-// async fn run_put_query(sql: &str) -> Result<QueryResult> {
-//     // println!("Executing PUT query: {}", sql);
-//     run_query(sql).await
-
-// }
