@@ -1,0 +1,9 @@
+[package]
+name = "snowflake-connect"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+snowflake-api = "0.10.0"
+anyhow = "1.0.95"
+tokio = "1.42.0"
